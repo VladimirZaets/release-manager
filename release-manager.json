@@ -1,0 +1,52 @@
+{
+  "configPath": "$projectPath/.release-config",
+  "releaseBranch": "master",
+  "defaultVersion": "minor",
+  "changelog": {
+    "commands": [
+      "npm install adobe-changelog-generator -g",
+      {
+        "command": "adobe-cg generate",
+        "options": {
+          "combineRepository": ["VladimirZaets/repo-1", "VladimirZaets/repo-2"],
+          "loader": {
+            "name": "@changelog-generator/issues",
+            "config": {
+              "exclude": {
+                "team_members": [
+                  "adobe-employee",
+                  "magento-verified-users"
+                ],
+                "labels": [
+                  "dont-need-release-notes"
+                ]
+              }
+            }
+          }
+        },
+        "output": {
+          "override": false,
+          "template": "magento-changelog.md",
+          "filename": "./changelog.md"
+        },
+        "group_by": {
+          "labels": {
+            "Bugs": ["bug", "bugfix"],
+            "Doc": ["documentation"]
+          }
+        }
+      }
+    ]
+  },
+  "release": {
+    "command": [
+      "npm install adobe-np-adapter -g'",
+      {
+        "command": "adobe-np release",
+      }
+    ]
+  },
+  "preactions": [],
+  "postactions": []
+}
+
