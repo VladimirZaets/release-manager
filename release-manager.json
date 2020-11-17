@@ -42,7 +42,7 @@
     "command": [
       "npm install adobe-np-adapter -g'",
       {
-        "command": "adobe-np release",
+        "command": "adobe-np release"
       }
     ]
   },
